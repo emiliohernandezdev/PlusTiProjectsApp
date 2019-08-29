@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+    <ion-buttons slot="start">
+        <ion-button>
+            <ion-icon slot="icon-only" name="contact"></ion-icon>
+        </ion-button>          
+    </ion-buttons>
+      <ion-searchbar [(ngModel)]="searcher" (ionClear)="initElems()" (ionChange)="Filter()" (ionCancel)="initElems()" placeholder="Buscar clientes" color="light" animated showCancelButton="focus" cancelButtonText="Cancelar"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Hala para actualizar"
+          refreshingSpinner="circles"
+          refreshingText="Actualizando...">
+        </ion-refresher-content>
+      </ion-refresher>
+    <ion-card class="welcome-card">
+      <img src="https://cdn.pixabay.com/photo/2017/03/31/17/44/avatar-2191932_960_720.png" alt="Clientes" />
+      <ion-card-header>
+        <ion-card-subtitle>Get Started</ion-card-subtitle>
+        <ion-card-title>Clientes</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+            <ion-item *ngFor="let client of clients" (click)="ShowClient(client)" detail>
+                <ion-thumbnail slot="start">
+                    <img src="{{client.image}}">
+                  </ion-thumbnail>
+                <ion-label>
+                  {{client.name}}
+                </ion-label>
+              </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content
+          loadingSpinner="bubbles"
+          loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+</ion-content>

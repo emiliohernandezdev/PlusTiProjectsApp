@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="Dismiss()">
+        <ion-icon slot="start" name="arrow-back"></ion-icon>
+        Volver
+      </ion-button>      
+    </ion-buttons>
+    <ion-title>Plus Technologies</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="product">
+    <ion-card class="welcome-card">
+      <ion-img src="https://image.freepik.com/free-photo/desktop-source-code-wallpaper-by-computer-language-with-coding-programming_33771-595.jpg"></ion-img>
+        <ion-card-header>
+          <ion-card-subtitle>Editar registro</ion-card-subtitle>
+          <ion-card-title>Actualizar producto</ion-card-title>
+        </ion-card-header>
+      
+        <ion-card-content>
+            <ion-item-divider>
+                <ion-label>
+                  Nueva informacion del producto
+                </ion-label>
+              </ion-item-divider>
+              
+            <ion-item>
+                <ion-label position="fixed">Nombre</ion-label>
+                <ion-input [(ngModel)]="product.name" type="text"></ion-input>
+            </ion-item>
+            <br/>
+            <ion-list>
+              <ion-list-header color="light">
+                <ion-label>Versiones</ion-label>
+              </ion-list-header>
+
+              <div *ngIf="versions.length > 0">
+                  <ion-item-sliding *ngFor="let version of versions">
+                      <ion-item-options side="start">
+                        <ion-item-option color="danger" (click)="Remove(version)">Remover version</ion-item-option>
+                      </ion-item-options>
+                <ion-item>
+                    <ion-label text-wrap>
+                        <ion-text color="primary">
+                          <h3>{{version.name}}</h3>
+                        </ion-text>
+                        <ion-text color="secondary">
+                          <p>{{version.description}}</p>
+                        </ion-text>
+                    </ion-label>
+                </ion-item>
+                  </ion-item-sliding>
+              </div>
+
+
+              <ion-button expand="full" fill="clear" (click)="AddVersion()">
+                  Agregar version
+                  <ion-icon slot="end" name="add"></ion-icon>
+                </ion-button>
+
+            </ion-list>
+
+            <ion-list>
+              <ion-list-header color="light">
+                <ion-label>Soluciones</ion-label>
+              </ion-list-header>
+
+              <div *ngIf="solutions.length > 0">
+                  <ion-item-sliding *ngFor="let solution of solutions">
+                      <ion-item-options side="start">
+                        <ion-item-option color="danger" (click)="RemoveSolution(solution)">Remover version</ion-item-option>
+                      </ion-item-options>
+                <ion-item>
+                    <ion-label text-wrap>
+                        <ion-text color="primary">
+                          <h3>{{solution.name}}</h3>
+                        </ion-text>
+                        <ion-text color="secondary">
+                          <p>{{solution.description}}</p>
+                        </ion-text>
+                    </ion-label>
+                </ion-item>
+                  </ion-item-sliding>
+              </div>
+
+
+              <ion-button expand="full" fill="clear" (click)="AddSolution()">
+                  Agregar solucion
+                  <ion-icon slot="end" name="add"></ion-icon>
+                </ion-button>
+
+            </ion-list>
+
+            <ion-item>
+                <ion-label>Producto activo</ion-label>
+                <ion-toggle [(ngModel)]="product.active"></ion-toggle>
+            </ion-item>
+
+            <br/>
+
+            <ion-button expand="block" (click)="Update()">
+                Guardar cambios
+              <ion-icon slot="end" name="save"></ion-icon>
+            </ion-button>
+        </ion-card-content>
+      </ion-card>
+</ion-content>

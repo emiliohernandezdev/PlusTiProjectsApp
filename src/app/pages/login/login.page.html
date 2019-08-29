@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Acceder</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card class="welcome-card">
+        <img src="http://www.worldcomplianceassociation.com/componentes/editor/ckfinder/userfiles/files/3ec653_9b9cc30102274826b837efdc9b6bb9fb_mv2.png" alt="Plus TI Logo" />
+        <ion-card-header>
+          <ion-card-subtitle>Acceder al sistema</ion-card-subtitle>
+          <ion-card-title>Iniciar sesión</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item>
+                <ion-label position="fixed">Email</ion-label>
+                <ion-input type="email" clearInput [(ngModel)]="email"></ion-input>
+            </ion-item> 
+
+            <ion-item>
+                <ion-label position="fixed">Contraseña</ion-label>
+                <ion-input [type]="type" clearInput [(ngModel)]="password"></ion-input>
+                <ion-button [disabled]="password === ''" slot="end" fill="clear" (click)="changeType()">
+                    <ion-icon slot="icon-only" name="eye" *ngIf="type === 'password'"></ion-icon>
+                    <ion-icon slot="icon-only" name="eye-off" *ngIf="type === 'text'"></ion-icon>
+                </ion-button>
+            </ion-item>
+                
+
+
+            <br/>
+              
+            <ion-button expand="block" shape="round" (click)="DoLogin()">
+                <ion-ripple-effect></ion-ripple-effect>
+                Acceder
+                <ion-icon name="arrow-round-forward" slot="end"></ion-icon>
+            </ion-button>
+
+            <ion-button expand="block" shape="round" fill="clear" (click)="RecoverPassword()">
+                ¿Olvidaste tu contraseña?
+                <ion-icon name="unlock" slot="end"></ion-icon>
+            </ion-button>
+              
+        </ion-card-content>
+      </ion-card>
+
+</ion-content>

@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar color="primary"> 
+      <ion-buttons slot="start">
+          <ion-button>
+              <ion-icon slot="icon-only" name="contact"></ion-icon>
+          </ion-button>          
+      </ion-buttons>
+    <ion-title>
+      Plus Technologies
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="Hala para actualizar"
+          refreshingSpinner="circles"
+          refreshingText="Cargando productos...">
+        </ion-refresher-content>
+      </ion-refresher>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="secondary">
+          <ion-icon name="more"></ion-icon>
+        </ion-fab-button>
+        <ion-fab-list side="start">
+            <ion-fab-button color="success" (click)="NewProduct()"><ion-icon name="add"></ion-icon></ion-fab-button>
+          </ion-fab-list>
+      </ion-fab>
+  <ion-card>
+    <ion-img src="https://docplayer.es/docs-images/40/4480463/images/page_1.jpg"></ion-img>
+    <ion-card-header>
+      <ion-card-subtitle>Desarrollo de la empresa</ion-card-subtitle>
+      <ion-card-title>Productos actuales</ion-card-title>
+    </ion-card-header>
+
+    <ion-searchbar *ngIf="products.length > 0" [(ngModel)]="searcher" (ionClear)="initElems()" (ionChange)="Filter()" (ionCancel)="initElems()" placeholder="Buscar proyectos" color="light" animated showCancelButton="focus" cancelButtonText="Cancelar"></ion-searchbar>
+  
+    <ion-card-content>
+      <ion-list>
+          <ion-item *ngFor="let product of products" (press)="Options(product)" detail>
+              <ion-thumbnail slot="start">
+                  <img src="https://icon-library.net/images/product-icon/product-icon-15.jpg">
+              </ion-thumbnail>
+              <ion-label text-wrap>
+                <ion-text color="primary">
+                  <h3>{{product.name}}</h3>
+                </ion-text>
+                <p>{{product.versions.length}} versiones</p>
+                <ion-text color="secondary">
+                  <p>{{product.solutions.length}} soluciones</p>
+                </ion-text>
+              </ion-label>
+          </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
